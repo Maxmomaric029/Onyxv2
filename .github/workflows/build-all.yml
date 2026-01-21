@@ -27,6 +27,16 @@ jobs:
         mkdir -p android/src/main/assets/www
         cp -r www/* android/src/main/assets/www/ || true
 
+    - name: Ensure Gradle wrapper JAR exists
+      run: |
+        mkdir -p android/gradle/wrapper
+        cd android/gradle/wrapper
+        curl -sSL https://services.gradle.org/distributions/gradle-8.1.1-bin.zip -o gradle.zip
+        unzip -o gradle.zip 'gradle-8.1.1/lib/gradle-wrapper.jar' -d . || true
+        if [ -f gradle/gradle-8.1.1/lib/gradle-wrapper.jar ]; then mv gradle/gradle-8.1.1/lib/gradle-wrapper.jar gradle-wrapper.jar; fi
+        if [ -f gradle-wrapper.jar ]; then echo "gradle-wrapper.jar ready"; else echo "Warning: gradle-wrapper.jar not found"; fi
+        rm -rf gradle gradle.zip || true
+
     - name: Make gradlew executable
       run: chmod +x android/gradlew
 
