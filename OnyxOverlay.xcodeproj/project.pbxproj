@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pbxproj>
+  <Project version="1">
+    <Name>OnyxOverlay</Name>
+    <BuildConfigurations>
+      <BuildConfiguration name="Debug"/>
+      <BuildConfiguration name="Release"/>
+    </BuildConfigurations>
+    <Targets>
+      <Target name="OnyxOverlay" type="Application"/>
+    </Targets>
+  </Project>
+</pbxproj>
