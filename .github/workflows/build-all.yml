@@ -101,7 +101,7 @@ jobs:
       with:
         name: OnyxOverlay-IPA
         path: build/ipa/OnyxOverlay.ipa
-        continue-on-error: true
+        if-no-files-found: ignore
 
   release:
     name: Create Release
