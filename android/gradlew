@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env sh
+#!/usr/bin/env sh
 
 #
 # Copyright 2015 the original author or authors.
@@ -82,11 +82,9 @@ esac
 
 CLASSPATH=$APP_HOME/gradle/wrapper/gradle-wrapper.jar
 
-
 # Determine the Java command to use to start the JVM.
 if [ -n "$JAVA_HOME" ] ; then
     if [ -x "$JAVA_HOME/jre/sh/java" ] ; then
-        # IBM's JDK on AIX uses strange locations for the executables
         JAVACMD="$JAVA_HOME/jre/sh/java"
     else
         JAVACMD="$JAVA_HOME/bin/java"
@@ -130,11 +128,8 @@ fi
 if [ "$cygwin" = "true" -o "$msys" = "true" ] ; then
     APP_HOME=`cygpath --path --mixed "$APP_HOME"`
     CLASSPATH=`cygpath --path --mixed "$CLASSPATH"`
-
     JAVACMD=`cygpath --unix "$JAVACMD"`
-
-    # We build the pattern for arguments to be converted via cygpath
-    ROOTDIRSRAW=`find -L / -maxdepth 3 -type d -name node_modules -o -prune -o -type d -name node_modules -prune -o -type d -name .git -prune -o -type d -name build -prune -o -type d 2>/dev/null | sed 's|/[^/]*$||;/^\/$/d;/^\/$/ !p'`
+    ROOTDIRSRAW=`find -L / -maxdepth 3 -type d -name node_modules -o -type d -name .git -o -type d -name build 2>/dev/null | sed 's|/[^/]*$||;/^\/$/d;/^\/$/ !p'`
     ROOTDIRS=""
     for dir in $ROOTDIRSRAW ; do
         ROOTDIRS="$ROOTDIRS$dir
@@ -158,8 +153,6 @@ APP_ARGS=`save "$@"`
 #   * -D...=... -- specify properties
 #   * -- and all following arguments for the application
 
-# the application will take, make that an env var so can be overridden on a command line or via config file.
-# But we keep the same shell script so we can introspect on it.
 DEFAULT_JVM_OPTS='"$DEFAULT_JVM_OPTS"'
 for i in DEFAULT_JVM_OPTS JAVA_OPTS GRADLE_OPTS; do
     eval "declare -x $i=\${$i//\\\\/\\\\\\\\}"
