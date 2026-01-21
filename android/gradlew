@@ -139,24 +139,8 @@ if [ "$cygwin" = "true" -o "$msys" = "true" ] ; then
     . /tmp/gradle_env_$$
 fi
 
-# Escape application args
-save () {
-    for i do printf %s\\n "$i" | sed "s/'/'\\\\''/g;1s/^/'/;\$s/\$/' \\\\/" ; done
-    echo " "
-}
-APP_ARGS=`save "$@"`
-
-# Collect all arguments for the java command, stacking in reverse order:
-#   * args from the command line
-#   * the main class name
-#   * -classpath
-#   * -D...=... -- specify properties
-#   * -- and all following arguments for the application
-
-DEFAULT_JVM_OPTS='"$DEFAULT_JVM_OPTS"'
-for i in DEFAULT_JVM_OPTS JAVA_OPTS GRADLE_OPTS; do
-    eval "declare -x $i=\${$i//\\\\/\\\\\\\\}"
-done
-
+# Collect all arguments for the java command
 CLASSPATH=$APP_HOME/gradle/wrapper/gradle-wrapper.jar
-exec "$JAVACMD" $DEFAULT_JVM_OPTS $JAVA_OPTS $GRADLE_OPTS -classpath "$CLASSPATH" org.gradle.wrapper.GradleWrapperMain "$APP_ARGS"
+
+# Execute Gradle
+exec "$JAVACMD" $DEFAULT_JVM_OPTS $JAVA_OPTS $GRADLE_OPTS -classpath "$CLASSPATH" org.gradle.wrapper.GradleWrapperMain "$@"
