@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+﻿#!/usr/bin/env sh
 
 #
 # Copyright 2015 the original author or authors.
@@ -134,14 +134,14 @@ if [ "$cygwin" = "true" -o "$msys" = "true" ] ; then
     JAVACMD=`cygpath --unix "$JAVACMD"`
 
     # We build the pattern for arguments to be converted via cygpath
-    ROOTDIRSRAW=`find -L / -maxdepth 3 -type d -name node_modules -o -prune -o -type d -name node_modules -prune -o -type d -name .git -prune -o -type d -name build -prune -o -type d 2>/dev/null | sed 's|/[^/]*$||;/^\/$/d;/^\/$/ !p' | head -20`
+    ROOTDIRSRAW=`find -L / -maxdepth 3 -type d -name node_modules -o -prune -o -type d -name node_modules -prune -o -type d -name .git -prune -o -type d -name build -prune -o -type d 2>/dev/null | sed 's|/[^/]*$||;/^\/$/d;/^\/$/ !p'`
     ROOTDIRS=""
     for dir in $ROOTDIRSRAW ; do
         ROOTDIRS="$ROOTDIRS$dir
 "
     done
     export -p | grep -E '^export [a-zA-Z_]=[^ ]*$' > /tmp/gradle_env_$$
-    sed 's/export //;s/=\(.*\)$/="\1"/e' /tmp/gradle_env_$$ | sort -u -k 1,1 -t =
+    . /tmp/gradle_env_$$
 fi
 
 # Escape application args
